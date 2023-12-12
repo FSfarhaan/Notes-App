@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Notes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">#DA9F00</item>
+<!--        <item name="colorSecondary">@color/black</item>-->
+<!--        <item name="colorPrimaryDark">@color/black</item>-->
+<!--        <item name="colorAccent">@color/black</item>-->
+<!--        <item name="actionMenuTextColor">@color/black</item>-->
+<!--        <item name="statusBarBackground">@color/black</item>-->
+<!--            <item name="colorOnPrimary">@color/black</item>-->
+<!--        <item name="statusBarBackground">#038EA0</item>-->
+    </style>
+
+    <style name="Theme.Notes" parent="Base.Theme.Notes" />
+</resources>
