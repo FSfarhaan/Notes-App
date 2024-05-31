@@ -5,40 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditActivity"
-    android:background="#F6F5F5"
+    android:background="@color/black"
     android:padding="18dp"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/baseline_keyboard_backspace_24"/>
-        <Button
+        <ImageView
             android:id="@+id/btnConfirm"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:background="@drawable/baseline_check_24"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 
     <EditText
+        android:paddingLeft="0sp"
         android:id="@+id/notesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title"
+        android:textColorHint="#242424"
+        android:textColor="@color/white"
+        android:backgroundTint="#242424"
         android:textSize="42sp" />
+    <TextView
+        android:id="@+id/noteCreatedOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created on 24/5/24 | 5:45"
+        android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/notesContent"
+    <ScrollView
+        android:layout_marginTop="10sp"
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Start Typing"
-        android:textSize="22sp"
-        android:background="@null"/>
+        android:scrollbars="none">
+        <EditText
+            android:id="@+id/notesContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Typing"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:textColorHint="#242424"
+            android:background="@null"/>
+    </ScrollView>
+
 
 
 </LinearLayout>

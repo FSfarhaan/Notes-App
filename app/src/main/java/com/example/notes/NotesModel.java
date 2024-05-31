@@ -1,13 +1,17 @@
 package com.example.notes;
 
-public class NotesModel {
-    String title, content;
-    int id;
+import java.util.Date;
 
-    public NotesModel(int id, String title, String content) {
+public class NotesModel {
+    String title, content, createdOn;
+    long modifiedOn;
+    int id;
+    public NotesModel(int id, String title, String content, String createdOn, long modifiedOn) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.createdOn = createdOn;
+        this.modifiedOn = modifiedOn;
     }
     public NotesModel() {
 
@@ -35,5 +39,21 @@ public class NotesModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public long getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public void setModifiedOn(long modifiedOn) {
+        this.modifiedOn = modifiedOn;
     }
 }

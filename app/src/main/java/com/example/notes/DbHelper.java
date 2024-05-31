@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -18,6 +19,8 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String KEY_ID = "id";
     public static final String KEY_TITLE = "title";
     public static final String KEY_CONTENT = "content";
+    public static final String KEY_CREATED_ON = "createdOn";
+    public static final String KEY_MODIFIED_ON = "modifiedOn";
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -26,8 +29,20 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_TITLE
-                + " TEXT, " + KEY_CONTENT + " TEXT)");
+        // CREATE TABLE TABLE_NAME (
+//            KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+//            KEY_TITLE TEXT,
+//            KEY_CONTENT TEXT,
+//            KEY_CREATED_ON TEXT,
+//            KEY_MODIFIED_ON TEXT)
+
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " ("
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_TITLE + " TEXT, "
+                + KEY_CONTENT + " TEXT, "
+                + KEY_CREATED_ON + " TEXT, "
+                + KEY_MODIFIED_ON + " INTEGER)"
+        );
     }
 
     @Override
@@ -36,11 +51,13 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertNotes(String title, String content) {
+    public void insertNotes(String title, String content, String todayDate, long modifiedOn) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, title);
         values.put(KEY_CONTENT, content);
+        values.put(KEY_CREATED_ON, todayDate);
+        values.put(KEY_MODIFIED_ON, modifiedOn);
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
@@ -49,27 +66,37 @@ public class DbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<NotesModel> notesList = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * from " + TABLE_NAME, null);
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT * from " + TABLE_NAME, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                NotesModel notesModel = new NotesModel();
-                notesModel.setId(Integer.parseInt(cursor.getString(0)));
-                notesModel.setTitle(cursor.getString(1));
-                notesModel.setContent(cursor.getString(2));
-                // Adding contact to list
-                notesList.add(notesModel);
-            } while (cursor.moveToNext());
+            if (cursor.moveToFirst()) {
+                do {
+                    NotesModel notesModel = new NotesModel();
+                    notesModel.setId(cursor.getInt(0));
+                    notesModel.setTitle(cursor.getString(1));
+                    notesModel.setContent(cursor.getString(2));
+                    notesModel.setCreatedOn(cursor.getString(3));
+                    notesModel.setModifiedOn(cursor.getLong(4));
+                    notesList.add(notesModel);
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
         }
-        db.close();
+        notesList.sort(new NotesModelTimestampComparator());
         return notesList;
     }
 
-    public int updateNoteRow(String oldTitle, String newTitle, String content) {
+    public int updateNoteRow(String oldTitle, String newTitle, String content, long modifiedOn) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_TITLE, newTitle);
         values.put(KEY_CONTENT, content);
+        values.put(KEY_MODIFIED_ON, modifiedOn);
         int rowsAffected = db.update(TABLE_NAME, values, KEY_TITLE + " = ?" , new String[] {oldTitle});
         db.close();
         return rowsAffected;
