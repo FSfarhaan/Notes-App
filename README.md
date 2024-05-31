@@ -17,8 +17,7 @@ The **Notes App** is an Android application that allows users to create, update,
 ## 📸 Screenshots
 
 <!-- Add screenshots of your app here. Example: -->
-![Screenshot1](screenshots/screenshot1.jpeg)
-![Screenshot2](screenshots/screenshot2.jpeg)
+![Screenshot1](screenshots/screenshot1.jpeg) ![Screenshot2](screenshots/screenshot2.jpeg) ![Screenshot3](screenshots/screenshot3.jpeg)
 
 ## 🚀 Installation
 
