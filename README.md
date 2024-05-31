@@ -1,5 +1,3 @@
-Sure, let's add some emojis and format the README to make it more attractive:
-
 ---
 
 # 📒 Notes App
