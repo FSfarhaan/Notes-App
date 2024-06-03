@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,18 +58,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         // For Updating a note;
         holder.notesRow.setOnClickListener(v -> {
-//            Toast.makeText(context, "Position " + pos + " is clicked", Toast.LENGTH_SHORT).show();
             startAnimation(v);
-            // String todayDate = getCurrentDate();
-            String createdOn = notesList.get(pos).getCreatedOn();
 
-            Intent intent = new Intent(context, EditActivity.class);
-            intent.putExtra("title", toPassTitle);
-            intent.putExtra("content", toPassContent);
-            intent.putExtra("authority", "update");
-            intent.putExtra("currentDate", createdOn);
-            context.startActivity(intent);
-            if(context instanceof MainActivity) ((MainActivity) context).finish();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String createdOn = notesList.get(pos).getCreatedOn();
+
+                    Intent intent = new Intent(context, EditActivity.class);
+                    intent.putExtra("title", toPassTitle);
+                    intent.putExtra("content", toPassContent);
+                    intent.putExtra("authority", "update");
+                    intent.putExtra("currentDate", createdOn);
+                    context.startActivity(intent);
+                    if(context instanceof MainActivity) ((MainActivity) context).finish();
+                }
+            }, 100);
+
         });
 
         // For Deleting a note;
@@ -136,7 +142,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     v.animate()
                             .scaleX(1f)
                             .scaleY(1f)
-                            .setDuration(100)
+                            .setDuration(50)
                             .setInterpolator(new DecelerateInterpolator())
                             .start();
                 }).start();
