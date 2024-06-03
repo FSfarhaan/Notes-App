@@ -62,7 +62,7 @@ Contributions are welcome! Please create an issue or submit a pull request with 
 ## 📸 Screenshots
 
 <!-- Add screenshots of your app here. Example: -->
-![Screenshot1](screenshots/screenshot5.jpeg)
+![Screenshot1](screenshots/screenshot6.jpeg)
 
 ## 📬 Contact
 
