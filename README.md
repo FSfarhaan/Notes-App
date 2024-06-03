@@ -14,12 +14,6 @@ The **Notes App** is an Android application that allows users to create, update,
 - ⏰ **Time Tracking**: Each note records the time it was created and last modified.
 - 📅 **Sorted Notes**: Notes are displayed in order of the most recently modified.
 
-## 📸 Screenshots
-
-<!-- Add screenshots of your app here. Example: -->
-![Screenshot1](screenshots/screenshot1.png)
-![Screenshot2](screenshots/screenshot2.png)
-
 ## 🚀 Installation
 
 1. **Clone the repository**:
@@ -76,6 +70,11 @@ The **Notes App** is an Android application that allows users to create, update,
 ## 🤝 Contributing
 
 Contributions are welcome! Please create an issue or submit a pull request with your improvements.
+
+## 📸 Screenshots
+
+<!-- Add screenshots of your app here. Example: -->
+![Screenshot1](screenshots/screenshot5.jpeg)
 
 ## 📬 Contact
 
