@@ -55,18 +55,6 @@ The **Notes App** is an Android application that allows users to create, update,
 - **SQLite**: The app uses SQLite for storing notes.
 - **DbHelper.java**: Manages database creation, version management, and CRUD operations.
 
-### Models
-
-- **NotesModel**: A model class representing a note with `id`, `title`, `content`, `createdOn`, and `modifiedOn` properties.
-
-### Adapters
-
-- **NotesAdapter**: An adapter class for binding notes data to the `RecyclerView`.
-
-## 📦 Dependencies
-
-- **AndroidX Libraries**: For backward compatibility and modern Android components.
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please create an issue or submit a pull request with your improvements.
@@ -74,7 +62,7 @@ Contributions are welcome! Please create an issue or submit a pull request with 
 ## 📸 Screenshots
 
 <!-- Add screenshots of your app here. Example: -->
-![Screenshot1](screenshots/screenshot5.jpeg)
+![Screenshot1](screenshots/screenshot6.jpeg)
 
 ## 📬 Contact
 
